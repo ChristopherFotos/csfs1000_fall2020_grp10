@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+.resize-container{
+    width: 50%
+}
+
 .row-title{
     font-family: Montserrat;
     padding-bottom: 10px;
@@ -85,4 +89,12 @@
     top: 25%;
     left: 20%;
     border-bottom: 1px solid white;
+}
+
+.next-button{
+    margin-bottom: 8%;
+    margin-left: 3%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
