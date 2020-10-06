@@ -1,0 +1,3 @@
+let slider  = new Slider(document.getElementsByClassName('gallery-row')[0], ['./images/1.jpg','./images/2.jpg','./images/3.jpg','./images/4.jpg'])
+let slider1 = new Slider(document.getElementsByClassName('gallery-row')[1], ['./images/1.jpg','./images/2.jpg','./images/3.jpg','./images/4.jpg'])
+let slider2 = new Slider(document.getElementsByClassName('gallery-row')[2], ['./images/1.jpg','./images/2.jpg','./images/3.jpg','./images/4.jpg'])
