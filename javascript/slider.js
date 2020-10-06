@@ -1,21 +1,41 @@
+// need to add a starting size (in num of pics). 
+
+//need to make it so that it shows photos in the correct order, not randomly.  
+
+// we only use this.container to get this.photocontainer. would be much better if we just went ahead and created a container, or just didn't take a container, 
+// only a photo container. that will simplify the user's markup. right now they have to have a container element with an element called 'photocontainer' inside it.
+// let's just make it so they only need one of the two. 
+
+// Let's make the photocontainer create itself inside of the element provided by the user. 
+// Maybe the button element should be added in the constructor as well. 
+
+// the amount of photos displayed should change with the width of the photocontainer. Add a listener for window resize that will check the
+// size of the container, then check if there are too many photos by multiplying the width of the photos by the number of photos and seeing 
+// if it exceeds the size of the container, and taking off as many photos as needed. 
+
+// Allow user to pass in a custom element, but also provide a default element
+
 class Slider {
-    constructor(container, pictures){
-        this.container = container
-        this.pictures  = pictures
-        this.thumbs    = []
+    constructor(container, pictures, startingSize){
+        this.container     = container
+        this.startingSize  = startingSize
+        this.pictures      = pictures
+        this.thumbs        = []
         this.slideVelocity = 25
         this.slideFriction = 0.85
         this.animationOffset = 0
-        this.photoContainer = container.getElementsByClassName('photo-container')[0]
-        this.button    = container.getElementsByClassName('next-button')[0]
-        this.addListener()
+        this.photoContainer  = container.getElementsByClassName('photo-container')[0]
+        this.button          = container.getElementsByClassName('next-button')[0]
+        this.addButtonListener()
         this.addPictures()
+        this.addResizeListener()
     }
 
     addPictures(){
         this.photoContainer.dataset.left = 0;
+        let i = 0
         this.pictures.forEach(p => {
-            let newPic = document.createElement('span')
+            if (i < this.startingSize){let newPic = document.createElement('span')
             newPic.classList.add('thumb-container')
             newPic.innerHTML =  `
             <span class="overlay">
@@ -28,8 +48,15 @@ class Slider {
             newPic.style.left = 0 + 'px'
             newPic.dataset.left  = 0
             this.photoContainer.appendChild(newPic)
-            this.thumbs.push(newPic)
+            this.thumbs.push(newPic)}
+            i ++ 
         })
+    }
+
+    addResizeListener(){
+        window.onresize = function(){
+            console.log('resized')
+        }
     }
 
     fadeIn(){
@@ -78,7 +105,7 @@ class Slider {
             `
 
         this.slide()
-        this.button.style.left = '152px'; 
+        this.button.style.left = '152px'; // make this dynaimcally change with the size of the photos. should be size + 2. 
         setTimeout(()=>{
             this.photoContainer.appendChild(newPic)
             this.button.style.left = '0px'; 
@@ -89,7 +116,7 @@ class Slider {
         
     }
 
-    addListener(){
+    addButtonListener(){
         this.button.addEventListener('click', e => {
             this.addAndRemove()
         })
@@ -98,8 +125,8 @@ class Slider {
 
 function initSliders(){
     let i = 0
-    Array.from(document.getElementsByClassName('gallery-row')).forEach(g => {
-        new Slider(g, arguments[i])
+    Array.from(document.getElementsByClassName('sliderize')).forEach(g => {
+        new Slider(g, arguments[i].pictures, arguments[i].startingSize)
         i++
     })
 }
