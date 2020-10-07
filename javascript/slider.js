@@ -1,10 +1,12 @@
-// need to add a starting size (in num of pics). 
-
-//need to make it so that it shows photos in the correct order, not randomly.  
+//need to make it so that it shows photos in the correct order, not randomly. 
 
 // we only use this.container to get this.photocontainer. would be much better if we just went ahead and created a container, or just didn't take a container, 
 // only a photo container. that will simplify the user's markup. right now they have to have a container element with an element called 'photocontainer' inside it.
 // let's just make it so they only need one of the two. 
+
+// fix the sliding, make the sliding velocity variable, turn friction on or off. possible formula: 2u = v^2/stoppingDisdtance  u:friction v:velocity
+// we will let the user choose the starting velocity, the stopping distance will be the width of the element, and we'll use that info to solve for the 
+// friction we should be applying
 
 // Let's make the photocontainer create itself inside of the element provided by the user. 
 // Maybe the button element should be added in the constructor as well. 
@@ -15,12 +17,19 @@
 
 // Allow user to pass in a custom element, but also provide a default element
 
+// A setup function that will run on initialization, a teardown function that allows the user to remove the slider from the page and runs 
+// some function(s) in the process, and various lifecycle functions 
+
+// dynamically add new photos to the array
+
 class Slider {
     constructor(container, pictures, startingSize){
         this.container     = container
         this.startingSize  = startingSize
         this.pictures      = pictures
         this.thumbs        = []
+        this.firstPass     = true
+        this.slides        = 0
         this.slideVelocity = 25
         this.slideFriction = 0.85
         this.animationOffset = 0
@@ -86,30 +95,56 @@ class Slider {
         } 
     }
 
+    createNewPic(newIndex){
+        let newPic = document.createElement('span')
+        newPic.classList.add('thumb-container')
+        newPic.innerHTML =  `
+        <span class="overlay">
+            <div class="icon-container"><img src="./images/user.png" alt="" class="author-icon"></div>
+            <h4 class="meta-heading">emerson martinez</h4>
+            <div class="line"></div>
+        </span>
+        <img src="${this.pictures[newIndex]}" alt="" class="thumb">`
+        
+        return newPic
+    }
+
+    getNextItem(){
+        this.slides ++ 
+        let newIndex
+        
+        if(this.firstPass){
+            newIndex = (this.startingSize-1) + this.slides
+        } 
+        
+        if(newIndex > this.pictures.length -1){
+            this.firstPass = false
+            this.slides    = 0
+        } 
+
+        if (!this.firstPass){
+            if(this.slides > this.pictures.length -1){
+                this.slides = 0
+            }
+            newIndex = this.slides 
+        }
+
+        return newIndex
+    }
+
     addAndRemove(){
         this.thumbs.splice(0,1)
-        this.photoContainer.dataset.left = 150
-        this.photoContainer.style.left = '150px'
+        this.photoContainer.dataset.left = 150   // this needs to be dynamic
+        this.photoContainer.style.left = '150px' // this needs to be dynamic
 
-        let randomInt = Math.floor(Math.random() * this.pictures.length)
-
-        let newPic = document.createElement('span')
-            newPic.classList.add('thumb-container')
-            newPic.innerHTML =  `
-            <span class="overlay">
-                <div class="icon-container"><img src="./images/user.png" alt="" class="author-icon"></div>
-                <h4 class="meta-heading">emerson martinez</h4>
-                <div class="line"></div>
-            </span>
-            <img src="${this.pictures[randomInt]}" alt="" class="thumb">
-            `
-
+        let newPic = this.createNewPic(this.getNextItem())
         this.slide()
-        this.button.style.left = '152px'; // make this dynaimcally change with the size of the photos. should be size + 2. 
+
+        this.button.style.left = '152px'; // make this dynaimcally change with the size of the photos. should be size of last thumb + 2. 
         setTimeout(()=>{
             this.photoContainer.appendChild(newPic)
             this.button.style.left = '0px'; 
-        }, 300)
+        }, 50) // this delay should be configurable
 
         this.photoContainer.removeChild(this.photoContainer.children[0])
         this.thumbs.push(newPic)
@@ -125,8 +160,9 @@ class Slider {
 
 function initSliders(){
     let i = 0
+    window.sliders = []
     Array.from(document.getElementsByClassName('sliderize')).forEach(g => {
-        new Slider(g, arguments[i].pictures, arguments[i].startingSize)
+        window.sliders[i] = new Slider(g, arguments[i].pictures, arguments[i].startingSize)
         i++
     })
 }

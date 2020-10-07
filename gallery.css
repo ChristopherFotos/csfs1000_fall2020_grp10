@@ -31,8 +31,8 @@ body {
 }
 
 .thumb {
-    width: 350px;
-    height: 350px;
+    width: 150px;
+    height: 150px;
     object-fit: fill;
     padding: none;
     margin:-3px;
