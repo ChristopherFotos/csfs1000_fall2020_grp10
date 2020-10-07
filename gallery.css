@@ -23,6 +23,10 @@ body {
     border-bottom: 1px solid #aaaaaa
 }
 
+.sliderize {
+    display:inline-block;
+}
+
 .thumb-container{
     position: relative;
     left: 0px;

@@ -1,4 +1,3 @@
-//need to make it so that it shows photos in the correct order, not randomly. 
 
 // we only use this.container to get this.photocontainer. would be much better if we just went ahead and created a container, or just didn't take a container, 
 // only a photo container. that will simplify the user's markup. right now they have to have a container element with an element called 'photocontainer' inside it.
@@ -8,6 +7,9 @@
 // we will let the user choose the starting velocity, the stopping distance will be the width of the element, and we'll use that info to solve for the 
 // friction we should be applying
 
+// provide a default next button that doesnt require the user to download any images
+// let the user use their own next button image
+
 // Let's make the photocontainer create itself inside of the element provided by the user. 
 // Maybe the button element should be added in the constructor as well. 
 
@@ -16,6 +18,9 @@
 // if it exceeds the size of the container, and taking off as many photos as needed. 
 
 // Allow user to pass in a custom element, but also provide a default element
+
+// Custom elements - what if the user is using relative units? How will our dynamic movements work then? Answer: we can use element.getBoundingClientRect(), which 
+// will give us the definite size, in pixels, of the elements.
 
 // A setup function that will run on initialization, a teardown function that allows the user to remove the slider from the page and runs 
 // some function(s) in the process, and various lifecycle functions 
@@ -33,11 +38,29 @@ class Slider {
         this.slideVelocity = 25
         this.slideFriction = 0.85
         this.animationOffset = 0
-        this.photoContainer  = container.getElementsByClassName('photo-container')[0]
+        this.photoContainer 
         this.button          = container.getElementsByClassName('next-button')[0]
+
+        this.createPhotoContainer()
+        this.addButton()
         this.addButtonListener()
         this.addPictures()
         this.addResizeListener()
+    }
+
+    createPhotoContainer(){
+        console.log('creating photo container')
+        this.photoContainer = document.createElement('div')
+        this.photoContainer.classList.add('photo-container') 
+        this.photoContainer.dataset.left = 0
+        this.container.appendChild(this.photoContainer)
+    }
+
+    addButton(){
+        this.button = document.createElement('img')
+        this.button.classList.add('next-button')
+        this.button.src = "./images/nextbutton.svg"
+        this.container.appendChild(this.button)
     }
 
     addPictures(){
@@ -45,6 +68,7 @@ class Slider {
         let i = 0
         this.pictures.forEach(p => {
             if (i < this.startingSize){let newPic = document.createElement('span')
+            console.log('adding a photo')
             newPic.classList.add('thumb-container')
             newPic.innerHTML =  `
             <span class="overlay">
