@@ -1,13 +1,23 @@
 @font-face {
     font-family: Anton;
-    src: url(/Font/Anton-Regular.ttf)
+    src: url("Font/Anton-Regular.ttf");
 }
+
+@font-face {
+    font-family: OpenSans;
+    src: url("Font/OpenSansCondensed-Light.ttf");
+}
+
 * 
 {
     margin: 0;
     padding: 0;
 }
 
+html {
+    background: url("pictures/dane-deaner.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
 nav {
     overflow: hidden;
     background-color: #E2DADB;
@@ -16,7 +26,8 @@ nav {
 nav a {
     float: left;
     color: #353B3C;
-    font-size: 18px;
+    font-family: OpenSans;
+    font-size: 20px;
     text-align: left;
     padding: 10px 10px;
     text-decoration: none
@@ -33,44 +44,61 @@ nav a {
     color: #353B3C;
     padding: 10px 10px;
     background-color: inherit;
-    font-family: inherit;
-    font-size: 18px;
+    font-family: OpenSans;
+    font-size: 20px;
     margin: 0;
 }
 
-nav a:hover .dropdown a:hover .dropbutton {
+nav a:hover {
     background-color: #353B3C;
+    color: #E2DADB;
 }
 
 .dropcontent {
     display: none;
     position: absolute;
-    background-color:white;
+    background-color:#E2DADB;
+    min-width: 75.22px;
 }
 
 .dropcontent a {
     float: none;
-    color: black;
+    color: #353B3C;
     padding: 10px 10px;
     text-decoration: none;
     display: block;
-    text-align: left;
+    text-align: center;
   }
   
   .dropcontent a:hover {
-    background-color: #ddd;
+    background-color: #353B3C;
   }
   
   .dropdown:hover .dropcontent {
     display: block;
   }
 
+.dropdown:hover  .dropbutton{
+    background-color: #353B3C;
+    color: #E2DADB;
+}
 header {
     position: relative;
-    top: 40vh;
-    color: #E2DADB;
-    font-size: 30px;
+    top: 35vh;
+    left: 1vw;
+    color: #353B3C;
+    font-size: 32px;
     font-family: Anton;
-    border-bottom: 1px solid grey;
+    border-bottom: 2px solid #353B3C;
     width: 70vw;
+}
+
+#photoCredit {
+    vertical-align: text-bottom;
+    position: fixed;
+    bottom: 2vh;
+    left: 1vw;
+    font-size: 12px;
+    font-family: OpenSans;
+    color: white;
 }
