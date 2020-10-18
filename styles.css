@@ -1,3 +1,4 @@
+/* GALLERY DIVS */
 html, body { 
     width: 100%;
     height: 100%;
@@ -19,20 +20,106 @@ html, body {
     width: 30%;
   }
   
+
+  /* ABOUT PAGE */
+  .about-body {
+    background-color: #F2ECED;
+
+  }
   .about {
-    height: 100%;
+    height: 80%;
     width: 100%;
     display: flex;
-    text-align: center;
+    text-align: justify;
   }
 
   .description {
     width: 50%;
-    margin: 5% 3%; 
-    padding: 3%;
+    margin: 2% 3%; 
+    padding: 1% 5% 3%;
+  }
+  
+  .description h1{
+    font-family: 'Anton', sans-serif;
+    font-size: 55px;
+    
+  }
+
+  .description p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    /* -webkit-animation: slide forwards ease 1s;
+    animation: slide forwards ease 1s; */
+    -webkit-animation: slide linear 1.5s;
+    animation: slide linear 1.5s;
+  
+  }
+  @-webkit-keyframes slide {
+    0% {margin-left: -300px;}
+    0% {margin-right: 300px;}
+    100% {margin-left: 0px;}
+    100% {margin-right: 0px;}
+  }
+
+  @keyframes slide {
+      0% {margin-left: -300px;}
+      0% {margin-right: 300px;}
+      100% {margin-left: 0px;}
+      100% {margin-right: 0px;}
   }
 
   .about-img {
-    width: 50%;
-    margin: 5% 3%;
+    width: 38%;
+    margin: 4% 3% 2% 0;
+    padding: 2% 2% 2% 0;
+    position: relative;
+    top: 40px;
+    left: 20px;
+  }
+
+  .about-building {
+    height: 80%;
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 3s;
+  }
+
+  @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+
+  .block-1 {
+    background-color: #353B3C;
+    width: 250px;
+    height: 170px;
+    position: relative;
+    left: 77%;
+    bottom: 34%;
+    z-index: -1;
+  }
+
+  .block-2 {
+    background-color: #353B3C;
+    width: 685px;
+    height: 280px;
+    position: relative;
+    left: 6%;
+    bottom: 77%;
+    opacity: 0.25;
+  }
+
+  .block-3 {
+    
+    background-color: #846A6A;
+    width: 200px;
+    height: 150px;
+    position: relative;
+    left: 56%;
+    bottom: 128%;
+    z-index: -1;
   }
