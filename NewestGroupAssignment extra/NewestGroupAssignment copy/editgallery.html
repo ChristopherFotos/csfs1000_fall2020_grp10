@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,9 +7,22 @@
     <link rel="stylesheet" href="editgallery.css">
 </head>
 <body>
-    <nav>Nav Bar Here</nav> <!--Navigation Bar Will Go Here-->
+  <nav>
+    <a href="#">HOME</a>
+        <div class="dropdown">
+            <button class="dropbutton">GALLERY</button>
+                <div class="dropcontent">
+                    <a href="#">TASTES</a>
+                    <a href="#">SPACES</a>
+                    <a href="#">PLACES</a>
+                </div>
+        </div>
+    <a href="#">ABOUT US</a>
+    <a href="#">CONTACT</a>
+    <a href="#">ADMIN</a>
+</nav>
 
-    <H1>Add Media</H1>
+    <H1 style="margin-top: 130px;">Add Media</H1>
     <hr>
 
     <div class="navbar">
@@ -248,7 +261,7 @@
   </div>
   <div class="gallery">
       <a href="EditorPics/spacesF.jpg">
-        <img src="EditorPics/spacesF.jpg" alt="blank" width="600" height="400">
+        <img src="EditorPics/spacesA.jpg" alt="blank" width="600" height="400">
     </a>
     <div class="desc">Image Description</div>
     <button type="button" ID="button">Edit Photo</button>
@@ -267,8 +280,20 @@
     <div class="desc">Image Description</div>
     <button type="button" ID="button">Edit Photo</button>
   </div>
-            
-            
-            
+           
 </body>
+
+
+<footer style="text-align: left; font-size: 8px; margin-top: 250px;">
+  <div id=right> 
+    <div id="container">
+        <p id="tastesTitle">TASTES</p>
+        <p id="spacesTitle">SPACES</p>
+        <p id="placesTitle">PLACES</p>
+    </div>
+</div>
+  
+  All images free use courtesy of <a href="Unsplash.com">Unsplash.com</a>
+  
+</footer>
 </html>

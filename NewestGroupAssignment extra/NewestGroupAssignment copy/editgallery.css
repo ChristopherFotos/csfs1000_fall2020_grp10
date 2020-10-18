@@ -2,20 +2,75 @@ html {
 
     background-color: #E2DADB;
 }
+nav {
+  overflow: hidden;
+  background-color: #E2DADB;
+}
+
+nav a {
+  float: left;
+  color: #353B3C;
+  font-size: 18px;
+  text-align: left;
+  padding: 10px 10px;
+  text-decoration: none
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbutton {
+  border: none;
+  outline: none;
+  color: #353B3C;
+  padding: 10px 10px;
+  background-color: inherit;
+  font-family: inherit;
+  font-size: 18px;
+  margin: 0;
+}
+
+nav a:hover .dropdown a:hover .dropbutton {
+  background-color: #353B3C;
+}
+
+.dropcontent {
+  display: none;
+  position: absolute;
+  background-color:white;
+}
+
+.dropcontent a {
+  float: none;
+  color: black;
+  padding: 10px 10px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropcontent a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropcontent {
+  display: block;
+}
 h1 {
     font-family: Anton;
     margin-bottom: 0%;
+    opacity: 0.7;
     
-}
-
-hr {
- 
 }
 
 .navbar {
     overflow: hidden;
     background-color: #353B3C; 
     margin-right: 70%;
+    border-radius: 30px;
+    opacity: 0.8;
   }
   
   .navbar a {
@@ -66,8 +121,8 @@ hr {
   }
   
   .subnav-content a:hover {
-    background-color: #353B3C;
-    color: black;
+    background-color: black;
+    color: white;
   }
   
   .subnav:hover .subnav-content {
@@ -81,6 +136,7 @@ hr {
   h2 {
       font-family: Anton;
       margin-top: 60px;
+      opacity: 0.7;
   }
 
   div.gallery {
@@ -89,6 +145,9 @@ hr {
     float: left;
     width: 180px;
     margin-bottom: 0%;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 10px;
   }
   
   div.gallery:hover {
@@ -98,12 +157,14 @@ hr {
   div.gallery img {
     width: 100%;
     height: auto;
+    background-color: white;
   }
   
   div.desc {
     padding: 15px;
     text-align: center;
     font-family: Anton;
+    background-color: white;
   }
 
   #button {
@@ -112,6 +173,45 @@ hr {
       background-color: #846a6A;
       color: #ccc;
       border-radius: 30px;
+      border: none;
   }
+
+  #container {
+
+position: absolute;
+    font-size: 20px;
+    padding: 0px;
+    margin-top: 0px;
+    margin-left: 95%;
+
+}
+#tastesTitle{
+    color: white;
+    font-family: Anton;
+    margin: 0;
+    padding: 0;
+    line-height: 35px;
+    
+}
+
+#spacesTitle {
+    color: #000000;
+    font-family: Anton;
+    margin:0;
+    padding:0;
+    
+    
+}
+
+#placesTitle {
+    color: white;
+    font-family: Anton;
+    margin: 0;
+    padding: 0;
+    line-height:35px;
+
+}
+
+  
 
   
